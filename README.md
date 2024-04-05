@@ -7,6 +7,7 @@ PascalCase -> public class SomeClassName
 # Variables
 
 var x = 5;
+
 var some_snake_case_variable_name = "some string value"; // <-- try to communicate as much intent as possible
 
 # Assets
