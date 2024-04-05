@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class adjustSortingOrder : MonoBehaviour
+public class AdjustSortingOrder : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     private Camera mainCamera;

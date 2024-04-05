@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class billboard : MonoBehaviour
+public class Billboard : MonoBehaviour
 {
     //[SerializeField] private Transform _camera;
     [SerializeField] bool freezeXZAxis = true;

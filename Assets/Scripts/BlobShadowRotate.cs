@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class blobShadowRotate : MonoBehaviour
+public class BlobShadowRotate : MonoBehaviour
 {
     [SerializeField] private Transform _camera;
     private Quaternion _initialRotation;
