@@ -10,6 +10,7 @@ public class HunterLogic : MonoBehaviour
     // @TODO(Dax): Deprecate this? 
     // private bool isWalking = false;
     public int damage = 1;
+    public int health = 1;
 
     void Start()
     {
