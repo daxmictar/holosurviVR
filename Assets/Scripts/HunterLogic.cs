@@ -32,7 +32,7 @@ public class HunterLogic : MonoBehaviour
     {
         if (other.gameObject.name == "PlayerController")
         {
-            var playerScript = other.gameObject.GetComponent<PlayerLogic>();
+            var playerScript = other.gameObject.GetComponent<PlayerStats>();
             playerScript.health -= damage;
             print("Player Health: " + playerScript.health);
 
