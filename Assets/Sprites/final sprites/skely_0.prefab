@@ -126,7 +126,6 @@ GameObject:
   - component: {fileID: 2521888525708420}
   - component: {fileID: 2521888525708421}
   - component: {fileID: 5338868829176561075}
-  - component: {fileID: -2068030493657707119}
   - component: {fileID: -2847377413057177809}
   - component: {fileID: -3758253700269579730}
   m_Layer: 0
@@ -279,21 +278,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   damage: 1
---- !u!114 &-2068030493657707119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2521888525708427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd44c32229f1cb45923e5ccfab0e608, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orbPrefab: {fileID: 1490234031593621673, guid: a4d13367df4c76642b0969299dc4c83f, type: 3}
-  orbDropCount: 1
-  shouldDie: 0
 --- !u!65 &-2847377413057177809
 BoxCollider:
   m_ObjectHideFlags: 0

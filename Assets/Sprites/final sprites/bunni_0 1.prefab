@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 5447594172645876773}
   - component: {fileID: 5447594172645876778}
   - component: {fileID: 5447594172645876779}
+  - component: {fileID: -9219957077082799902}
   - component: {fileID: 5071706764163149700}
   - component: {fileID: 5447594172645876772}
   - component: {fileID: 5447594172645876775}
   - component: {fileID: 7093167687436609748}
-  - component: {fileID: 2555336588511060132}
   - component: {fileID: -116364754293560125}
   - component: {fileID: 3626952945727107625}
   m_Layer: 0
@@ -114,6 +114,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-9219957077082799902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5447594172645876776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61311e46731b2734587e71cfe27f2915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  healthBar: {fileID: 0}
+  damageTakenModifier: 1
 --- !u!114 &5071706764163149700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,21 +184,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   damage: 1
---- !u!114 &2555336588511060132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5447594172645876776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd44c32229f1cb45923e5ccfab0e608, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orbPrefab: {fileID: 1490234031593621673, guid: a4d13367df4c76642b0969299dc4c83f, type: 3}
-  orbDropCount: 1
-  shouldDie: 0
 --- !u!65 &-116364754293560125
 BoxCollider:
   m_ObjectHideFlags: 0
