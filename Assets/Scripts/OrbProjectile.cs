@@ -37,7 +37,10 @@ public class OrbProjectile : MonoBehaviour
                 {
                     drop_orb.Die();
                 }
-            }   
+            } else {
+                drop_orb.Die();
+                Debug.Log("Stats do not exists on " + other + " triggering Die().");
+            }
         }
     }
 }
