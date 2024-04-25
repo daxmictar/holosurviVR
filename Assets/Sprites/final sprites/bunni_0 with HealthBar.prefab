@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 0
+  currentHealth: 5
   healthBar: {fileID: 7163268873194495425}
   damageTakenModifier: 1
 --- !u!114 &9091843866439060638
@@ -220,7 +220,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbPrefab: {fileID: 1490234031593621673, guid: a4d13367df4c76642b0969299dc4c83f, type: 3}
   orbDropCount: 1
-  shouldDie: 0
 --- !u!114 &5538448703956991793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,7 +258,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  isWalking: 1
   damage: 1
+  posY: 2
+  health: 1
 --- !u!65 &5715977448821620739
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -482,7 +484,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d53db8e0e42734487e33c24fa743d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 0}
 --- !u!114 &4052981711258001925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,7 +524,7 @@ RectTransform:
   m_GameObject: {fileID: 7336335195952942916}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3354508263148932430}
@@ -531,7 +532,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0.1}
   m_SizeDelta: {x: 5, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7853010150985457492

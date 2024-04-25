@@ -8,9 +8,6 @@ public class DropOrb : MonoBehaviour
 
     private Animator animator;
 
-    // For testing orb drops
-    public bool shouldDie = false;
-
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -18,10 +15,7 @@ public class DropOrb : MonoBehaviour
 
     public void Update()
     {
-        if (shouldDie)
-        {
-            killMonster();
-        }
+        // n/a for now
     } 
 
     public void Die() 
@@ -51,9 +45,4 @@ public class DropOrb : MonoBehaviour
         }
     }
 
-    // For testing purposes!!
-    private void killMonster()
-    {
-        Die();
-    }
 }

@@ -16,14 +16,17 @@ public class MonsterStats : MonoBehaviour
         UpdateHealthBar();
     }
 
+    /**
+    * Is currently being called from OrbProjectile.cs in order to cause the monster
+    * to take damage.
+    *
+    * @TODO(Dax, Octavio): We need to change the damage check to the monsters rather 
+    * than the projectiles.
+    */
     public void TakeDamage(int damage)
     {
         currentHealth -= (int)(damage * damageTakenModifier);
         UpdateHealthBar();
-        if (currentHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
     }
 
     void UpdateHealthBar()
