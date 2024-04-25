@@ -6,20 +6,32 @@ public class DropOrb : MonoBehaviour
 
     public int orbDropCount = 1;
 
-    // For testing orb drops
-    public bool shouldDie = false;
+    private Animator animator;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     public void Update()
     {
-        if (shouldDie)
-        {
-            killMonster();
-        }
+        // n/a for now
     } 
 
     public void Die() 
     {
+        animator.SetBool("playSkelyDie", true);
         DropOrbs();
+        BoxCollider enemyCollider = gameObject.GetComponent<BoxCollider>();
+        if (enemyCollider != null)
+        {
+            // Disable the BoxCollider
+            enemyCollider.enabled = false;
+        }
+    }
+
+    public void OnDeathAnimationComplete()
+    {
         Destroy(gameObject);
     }
 
@@ -33,9 +45,4 @@ public class DropOrb : MonoBehaviour
         }
     }
 
-    // For testing purposes!!
-    private void killMonster()
-    {
-        Die();
-    }
 }

@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  isWalking: 1
   damage: 1
 --- !u!114 &2555336588511060132
 MonoBehaviour:
@@ -202,8 +203,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.28, y: 1.28, z: 0.68}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.647243, y: 0.6104185, z: 0.68}
+  m_Center: {x: -0.005700668, y: -0.3347927, z: 0}
 --- !u!54 &3626952945727107625
 Rigidbody:
   m_ObjectHideFlags: 0

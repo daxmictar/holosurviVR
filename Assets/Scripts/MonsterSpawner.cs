@@ -30,7 +30,7 @@ public class MonsterSpawner : MonoBehaviour
         {
             gapTime = Random.Range(minRange, maxRange);
             timer = 0f;
-            var monster = monsters[Random.Range(0, 3)];
+            var monster = monsters[Random.Range(0, 4)];
 
             var randomPosition = RandomPointInsideCircle(spawnRadius);
             var position = new Vector3(playerPosition.position.x + randomPosition.x, playerPosition.position.y, playerPosition.position.z + randomPosition.y);
