@@ -8,13 +8,16 @@ public class HunterLogic : MonoBehaviour
     private Transform playerPosition;
     public float moveSpeed = 2.0f;
     // @TODO(Dax): Deprecate this? 
-    // private bool isWalking = false;
+    public bool isWalking = true;
     public int damage = 1;
+    private Animator animator;
+    public float posY = 2f;
     public int health = 1;
 
     void Start()
     {
         playerPosition = FindPlayer().transform;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -24,16 +27,23 @@ public class HunterLogic : MonoBehaviour
 
     void MoveTowardsPlayer()
     {
-        Vector3 newPosition = Vector3.MoveTowards(transform.position, playerPosition.position, moveSpeed * Time.deltaTime);
-        newPosition.y = 2f;
-        transform.position = newPosition;
+        if (isWalking)
+        {
+            Vector3 newPosition = Vector3.MoveTowards(transform.position, playerPosition.position, moveSpeed * Time.deltaTime);
+            newPosition.y = posY;
+            transform.position = newPosition;
+        }
+        else
+        {
+            
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "PlayerController")
         {
-            var playerScript = other.gameObject.GetComponent<PlayerLogic>();
+            var playerScript = other.gameObject.GetComponent<PlayerStats>();
             playerScript.health -= damage;
             print("Player Health: " + playerScript.health);
 
@@ -47,6 +57,7 @@ public class HunterLogic : MonoBehaviour
 
         print("COLLIDED");
     }
+
 
     private GameObject FindPlayer()
     {
