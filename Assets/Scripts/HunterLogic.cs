@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 
 public class HunterLogic : MonoBehaviour
 {
@@ -49,7 +49,7 @@ public class HunterLogic : MonoBehaviour
 
             if (playerScript.health <= 0) {
                 print("You died loser!");
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
 
             Destroy(gameObject);
