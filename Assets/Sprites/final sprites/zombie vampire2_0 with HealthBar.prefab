@@ -445,7 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a0321bc1bd493498b1140b269289cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freezeXZAxis: 0
+  freezeXZAxis: 1
 --- !u!114 &7513559423326526265
 MonoBehaviour:
   m_ObjectHideFlags: 0

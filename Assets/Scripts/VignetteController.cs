@@ -10,7 +10,7 @@ public class VignetteController : MonoBehaviour
     public float lerpSpeed = 2f;
 
     // Target intensity values
-    public float targetIntensity = 0f;
+    private float targetIntensity = 0f;
 
     void Start()
     {
@@ -28,7 +28,7 @@ public class VignetteController : MonoBehaviour
         // Set target intensity based on whether the player is walking
         if (isWalking)
         {
-            targetIntensity = 0.3f; // Adjust this value as desired for walking vignette
+            targetIntensity = 0.5f; // Adjust this value as desired for walking vignette
         }
         else
         {
