@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 5984115340760743122}
   - component: {fileID: 462577682966538003}
   - component: {fileID: 2878355620505576943}
+  - component: {fileID: 7484914367242087979}
   m_Layer: 0
   m_Name: blackbunni_0 with HealthBar
   m_TagString: Monster
@@ -421,6 +422,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7484914367242087979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2479382931372944524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0dad45615feade4194790c51da69e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 0.35686275, b: 0.35686275, a: 1}
+  flashDuration: 0.1
+  spriteRenderer: {fileID: 0}
 --- !u!1 &3168624743169496193
 GameObject:
   m_ObjectHideFlags: 0

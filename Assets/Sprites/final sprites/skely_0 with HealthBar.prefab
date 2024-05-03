@@ -230,6 +230,7 @@ GameObject:
   - component: {fileID: 3036533837041875296}
   - component: {fileID: 3695449317292757163}
   - component: {fileID: 1683250073241005623}
+  - component: {fileID: 2149113160838458534}
   m_Layer: 0
   m_Name: skely_0 with HealthBar
   m_TagString: Monster
@@ -447,6 +448,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2149113160838458534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3064043600971113481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0dad45615feade4194790c51da69e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 0.35686275, b: 0.35686275, a: 1}
+  flashDuration: 0.1
+  spriteRenderer: {fileID: 0}
 --- !u!1 &3494455048698085744
 GameObject:
   m_ObjectHideFlags: 0

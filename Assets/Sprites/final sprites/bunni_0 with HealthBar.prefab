@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 1870421759550769942}
   - component: {fileID: 5715977448821620739}
   - component: {fileID: 3817102407273977880}
+  - component: {fileID: 5032244883897260242}
   m_Layer: 0
   m_Name: bunni_0 with HealthBar
   m_TagString: Monster
@@ -310,6 +311,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5032244883897260242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134952686301551134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0dad45615feade4194790c51da69e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 0.35686275, b: 0.35686275, a: 1}
+  flashDuration: 0.1
+  spriteRenderer: {fileID: 0}
 --- !u!1 &3656169095312136103
 GameObject:
   m_ObjectHideFlags: 0
