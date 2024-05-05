@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 //using UnityEngine.SceneManagement;
 
 public class HunterLogic : MonoBehaviour
@@ -28,10 +27,7 @@ public class HunterLogic : MonoBehaviour
 
     void MoveTowardsPlayer()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        PlayerStats playerStatus = player.GetComponent<PlayerStats>();
-        
-        if (!playerStatus.levelingUp && isWalking)
+        if (isWalking)
         {
             Vector3 newPosition = Vector3.MoveTowards(transform.position, playerPosition.position, moveSpeed * Time.deltaTime);
             newPosition.y = posY;
@@ -39,7 +35,7 @@ public class HunterLogic : MonoBehaviour
         }
         else
         {
-            transform.position = new Vector3(transform.position.x, posY, transform.position.z);
+            
         }
     }
 
@@ -59,7 +55,7 @@ public class HunterLogic : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // print("COLLIDED");
+        print("COLLIDED");
     }
 
 

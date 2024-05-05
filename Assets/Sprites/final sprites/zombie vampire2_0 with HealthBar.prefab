@@ -306,6 +306,7 @@ GameObject:
   - component: {fileID: 2619692964295659609}
   - component: {fileID: 5322342088527935679}
   - component: {fileID: 5463147162362118749}
+  - component: {fileID: -8397910845589299046}
   m_Layer: 0
   m_Name: zombie vampire2_0 with HealthBar
   m_TagString: Monster
@@ -523,6 +524,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-8397910845589299046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7759707801617199688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0dad45615feade4194790c51da69e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 0.3537736, b: 0.3537736, a: 1}
+  flashDuration: 0.1
+  spriteRenderer: {fileID: 1233216256810736127}
 --- !u!1 &8464429436871838814
 GameObject:
   m_ObjectHideFlags: 0
