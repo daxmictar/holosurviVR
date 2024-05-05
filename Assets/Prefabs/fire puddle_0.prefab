@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 621737799779563972}
   - component: {fileID: 5967735520484676283}
   - component: {fileID: -4185799122109707257}
+  - component: {fileID: 8097282720529308458}
+  - component: {fileID: -5733666706747748742}
   m_Layer: 0
   m_Name: fire puddle_0
   m_TagString: Untagged
@@ -119,3 +121,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e573f3b057284e846beebd12d3792b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8097282720529308458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5550951077146764279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74198eb19ba3df2468b69690ba607840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 10
+  damageInterval: 0.25
+  damage: 1
+--- !u!135 &-5733666706747748742
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5550951077146764279}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.64000005
+  m_Center: {x: 0, y: 0, z: 0}
