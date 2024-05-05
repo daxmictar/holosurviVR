@@ -31,7 +31,7 @@ public class HunterLogic : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         PlayerStats playerStatus = player.GetComponent<PlayerStats>();
         
-        if (!playerStatus.LevelingUp && isWalking)
+        if (!playerStatus.levelingUp && isWalking)
         {
             Vector3 newPosition = Vector3.MoveTowards(transform.position, playerPosition.position, moveSpeed * Time.deltaTime);
             newPosition.y = posY;
@@ -48,10 +48,10 @@ public class HunterLogic : MonoBehaviour
         if (other.gameObject.name == "PlayerController")
         {
             var playerScript = other.gameObject.GetComponent<PlayerStats>();
-            playerScript.Health -= damage;
-            print("Player Health: " + playerScript.Health);
+            playerScript.health -= damage;
+            print("Player Health: " + playerScript.health);
 
-            if (playerScript.Health <= 0) {
+            if (playerScript.health <= 0) {
                 print("You died loser!");
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }

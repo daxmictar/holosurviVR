@@ -36,6 +36,6 @@ public class experienceUI : MonoBehaviour
     private void UpdateExperienceUI()
     {
         // Update the text to display the player's experience points
-        experienceText.text = "XP: " + playerStats.Experience.ToString();
+        experienceText.text = "XP: " + playerStats.experience.ToString();
     }
 }

@@ -39,7 +39,7 @@ public class AutomaticGun : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         PlayerStats playerStatus = player.GetComponent<PlayerStats>();
-        if(!playerStatus.LevelingUp){
+        if(!playerStatus.levelingUp){
             // Increment the burst timer by the time elapsed since the last frame
             burstTimer += Time.deltaTime;
 

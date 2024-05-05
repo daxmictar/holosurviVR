@@ -33,7 +33,7 @@ public class PlayerLogic : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         PlayerStats playerStatus = player.GetComponent<PlayerStats>();
-        if(!playerStatus.LevelingUp){
+        if(!playerStatus.levelingUp){
             Vector3 forward = transform.TransformDirection(Vector3.forward);
             Vector3 right = transform.TransformDirection(Vector3.right);
 

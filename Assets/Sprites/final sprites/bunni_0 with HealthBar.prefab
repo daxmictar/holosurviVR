@@ -203,9 +203,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 50
+  currentHealth: 100
   healthBar: {fileID: 7163268873194495425}
-  damageTakenModifier: 20
+  damageTakenModifier: 1
 --- !u!114 &9091843866439060638
 MonoBehaviour:
   m_ObjectHideFlags: 0

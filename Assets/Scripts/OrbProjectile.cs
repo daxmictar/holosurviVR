@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class OrbProjectile : MonoBehaviour
 {
-    private const int BASE_DAMAGE_VALUE = 1; // Very weak base damage.
-    public float lifetime = 5.0f; // Lifetime of the orb in seconds
+    private const int BASE_DAMAGE_VALUE = 20; // Very weak base damage.
+    public float lifetime = 2.0f; // Lifetime of the orb in seconds
     public int damage = BASE_DAMAGE_VALUE; // The damage value used for projetile damage calculations.
 
     void Start()

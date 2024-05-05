@@ -19,6 +19,11 @@ public class MonsterSpawner : MonoBehaviour
         gapTime = Random.Range(minRange, maxRange);
         timer = 0f;
 
+        // Resets the damage taken value of all monsters to 100%.
+        foreach (var monster in monsters)
+        {
+            monster.GetComponent<MonsterStats>().percentDamageTaken = 1.0f;
+        }
     }
 
     // Update is called once per frame
@@ -27,7 +32,7 @@ public class MonsterSpawner : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         PlayerStats playerStatus = player.GetComponent<PlayerStats>();
 
-        if(!playerStatus.LevelingUp){
+        if(!playerStatus.levelingUp){
             timer += Time.deltaTime;
 
             if (timer > gapTime)

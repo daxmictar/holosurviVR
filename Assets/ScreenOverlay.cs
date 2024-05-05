@@ -39,17 +39,17 @@ public class ScreenOverlay : MonoBehaviour
         PlayerStats playerStatus = player.GetComponent<PlayerStats>();
 
         // Semi-transparent backing for dimming
-        overlayImage.SetActive(playerStatus.LevelingUp);
+        overlayImage.SetActive(playerStatus.levelingUp);
         
         // "Level Up!" title
-        title.SetActive(playerStatus.LevelingUp);
+        title.SetActive(playerStatus.levelingUp);
         
         // Descriptions of the power-ups
-        upgradeTextOne.SetActive(playerStatus.LevelingUp);
-        upgradeTextTwo.SetActive(playerStatus.LevelingUp);
-        upgradeTextThree.SetActive(playerStatus.LevelingUp);
+        upgradeTextOne.SetActive(playerStatus.levelingUp);
+        upgradeTextTwo.SetActive(playerStatus.levelingUp);
+        upgradeTextThree.SetActive(playerStatus.levelingUp);
     
-        selectionBox.SetActive(playerStatus.LevelingUp);
+        selectionBox.SetActive(playerStatus.levelingUp);
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -82,22 +82,8 @@ public class ScreenOverlay : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             ProcessUpgrade(upgradeIndex);
-            playerStatus.LevelingUp = false;
+            playerStatus.levelingUp = false;
         }
-    }
-
-    private void GenerateNewUpgrades()
-    {
-        upgrades[0] = UpgradeGenerator.GenerateRandomUpgrade();
-        upgrades[1] = UpgradeGenerator.GenerateRandomUpgrade();
-        upgrades[2] = UpgradeGenerator.GenerateRandomUpgrade();
-    }
-
-    private void SetUpgradeText()
-    {
-        upgradeTextOne.GetComponent<TextMeshProUGUI>().text = upgrades[0].Name;
-        upgradeTextTwo.GetComponent<TextMeshProUGUI>().text = upgrades[1].Name;
-        upgradeTextThree.GetComponent<TextMeshProUGUI>().text = upgrades[2].Name;
     }
 
     public void GeneratePowerups() 
@@ -120,24 +106,13 @@ public class ScreenOverlay : MonoBehaviour
         // Or you can just generate them all at once.
         // var upgrades = UpgradeGenerator.GenerateUpgrades();
 
-        GenerateNewUpgrades();
+        upgrades[0] = UpgradeGenerator.GenerateRandomUpgrade();
+        upgrades[1] = UpgradeGenerator.GenerateRandomUpgrade();
+        upgrades[2] = UpgradeGenerator.GenerateRandomUpgrade();
 
-        SetUpgradeText();
-
-        foreach (var upgrade in upgrades)
-        {
-            // Below is how you perform type introspection, which basically just means: 
-            // 'figure out what type it is, and then use it as if it were that type'.
-            if (upgrade is WeaponUpgrade wu)
-            {
-                Debug.Log($"This is a WeaponUpgrade object -> {wu.Modifier}");
-            }
-
-            if (upgrade is ScalingUpgrade su)
-            {
-                Debug.Log($"This is a ScalingUpgrade object -> {su.Modifier}");
-            }
-        }
+        upgradeTextOne.GetComponent<TextMeshProUGUI>().text = upgrades[0].Name;
+        upgradeTextTwo.GetComponent<TextMeshProUGUI>().text = upgrades[1].Name;
+        upgradeTextThree.GetComponent<TextMeshProUGUI>().text = upgrades[2].Name;
     }
 
     /// <summary>
@@ -155,27 +130,15 @@ public class ScreenOverlay : MonoBehaviour
         }
 
         var selectedUpgrade = upgrades[upgradeSelection];
+        var playerPowerups = player.GetComponent<PlayerUpgrades>();
 
-        // Check and then do something with the weapon upgrade modifier.
-        if (selectedUpgrade is WeaponUpgrade wu)
-        {
-            var stats = player.GetComponent<PlayerStats>();
+        // Pass the selected power to the PlayerUpgrades script.
+        playerPowerups.UpdatePlayerUpgrades(selectedUpgrade);
 
-            // Check the player's weapon and then modify it accordingly.
-        }
-
-        // Check and then do something with the scaling upgrade modifier.
-        if (selectedUpgrade is ScalingUpgrade su)
-        {
-            var spawner = GameObject.FindGameObjectWithTag("Spawner");
-            var monsters = spawner.GetComponent<MonsterSpawner>().monsters;
-
-            // Iterate through each monster and bump the value of their damage taken modifier.
-            foreach (var monster in monsters)
-            {
-                monster.GetComponent<MonsterStats>().damageTakenModifier *= su.Modifier;
-            }
-        }
+        // Clear all upgrades after their generation and subsequent selection.
+        upgrades[0] = null;
+        upgrades[1] = null;
+        upgrades[2] = null;
     }
 }
 

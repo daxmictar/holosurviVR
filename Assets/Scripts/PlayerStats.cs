@@ -1,16 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public int Health {get;set;} = 100;
-    public int Experience {get;set;} = 0; 
-    public int ExperienceToLevel {get;} = 100;
-    public int Level {get;set;} = 1;
-    public bool LevelingUp {get;set;} = false;
+    public int health = 100;
+    public int experience = 0; 
+    public int experienceToLevel = 100;
+    public int level = 1;
+    public bool levelingUp = false;
 
     public void Update()
     {
-        if (Experience >= ExperienceToLevel)
+        if (experience >= experienceToLevel)
         {
             LevelUp();
         }
@@ -21,16 +22,16 @@ public class PlayerStats : MonoBehaviour
     /// </summary>
     public void GivePlayerExperience(int amount) 
     {
-        Experience += amount;
+        experience += amount;
         Debug.Log($"Gave player {amount} exp");
     }
 
     public void LevelUp() 
     {
-        Debug.Log($"Leveled Up! -> {Level}");
+        Debug.Log($"Leveled Up! -> {level}");
 
-        Experience = 0;
-        LevelingUp = true;
+        experience = 0;
+        levelingUp = true;
 
         GameObject ui = GameObject.FindGameObjectWithTag("UICanvas");
         ScreenOverlay screenOverlay = ui.GetComponent<ScreenOverlay>();
