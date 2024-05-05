@@ -3181,9 +3181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbcbabe9b08d25b4ca3fca883aa61dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   splitAttack: 0
   singleAttack: 0
+  printing: 0
 --- !u!114 &267958004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3208,6 +3208,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39e2d3182013d4448905e415e48a00cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  experience: 0
+  experienceToLevel: 100
+  level: 1
+  levelingUp: 0
 --- !u!1 &277023223
 GameObject:
   m_ObjectHideFlags: 0
@@ -19069,13 +19074,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4571541517855182275, guid: 27fe51fdc756dd848a8aef7ce1f3bf85, type: 3}
       propertyPath: experience
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5190144784259206689, guid: 27fe51fdc756dd848a8aef7ce1f3bf85, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2830091008672773565, guid: 27fe51fdc756dd848a8aef7ce1f3bf85, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
