@@ -127,8 +127,6 @@ public class ScreenOverlay : MonoBehaviour
 
     public void GeneratePowerups() 
     {
-        var upgrades = UpgradeGenerator.GenerateUpgrades();
-
         // EXAMPLES for OCTAVIO
 
         // Generates a random upgrade, use this if you want to generate a SINGLE upgrade.
@@ -145,7 +143,7 @@ public class ScreenOverlay : MonoBehaviour
         // var speedUpgrades = UpgradeGenerator.GenerateSpeedUpgrades();
 
         // Or you can just generate them all at once.
-        var allUpgrades = UpgradeGenerator.GenerateUpgrades();
+        var upgrades = UpgradeGenerator.GenerateUpgrades();
         
         foreach (var upgrade in upgrades)
         {
@@ -166,9 +164,17 @@ public class ScreenOverlay : MonoBehaviour
     public void ProcessUpgrade(int upgradeID)
     {
         //Apply the effect of the given upgrade
+        var upgrade = UpgradeGenerator.GenerateUpgradeById(upgradeID);
+        if (upgrade is WeaponUpgrade wu)
+        {
+            // do something with the weapon upgrade modifier
+        }
 
+        if (upgrade is ScalingUpgrade su)
+        {
+            // do something with the scaling upgrade modifier
+        }
     }
-
 }
 
 //TODO
