@@ -12,6 +12,7 @@ public class PlayerStats : MonoBehaviour
 
     public AudioClip hitSound;
     public Image damageIndicator;
+    public AudioClip experiencePickupSound;
     private AudioSource audioSource;
     private float indicatorDuration = 2.0f;
 
@@ -26,7 +27,7 @@ public class PlayerStats : MonoBehaviour
         if (damageIndicator != null)
         {
             damageIndicator.gameObject.SetActive(false);
-            
+
             // Ensure damage indicator is a child of a Canvas set to Screen Space - Overlay
             Canvas canvas = damageIndicator.GetComponentInParent<Canvas>();
             if (canvas.renderMode != RenderMode.ScreenSpaceOverlay)
@@ -51,6 +52,15 @@ public class PlayerStats : MonoBehaviour
     {
         experience += amount;
         Debug.Log($"Gave player {amount} exp");
+        PlayExperiencePickupSound();
+    }
+
+    private void PlayExperiencePickupSound()
+    {
+        if (experiencePickupSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(experiencePickupSound);
+        }
     }
 
     public void LevelUp() 
