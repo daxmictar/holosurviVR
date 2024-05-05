@@ -9,6 +9,9 @@ public class AutomaticGun : MonoBehaviour
     [SerializeField] private float timeBetweenShots = 0.2f;
     [SerializeField] private float timeBetweenBursts = 3.0f;
     [SerializeField] private float bulletSpeed = 20.0f;
+    [SerializeField] private AudioClip shootSound;
+
+    private AudioSource audioSource;
 
     private float shotTimer;
     private float burstTimer;
@@ -19,6 +22,14 @@ public class AutomaticGun : MonoBehaviour
         shotTimer = 0f;
         burstTimer = timeBetweenBursts;
         currentBurstShotCount = 0;
+
+         // Get AudioSource
+        audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null) // If no AudioSource found, add one
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     private void Update()
@@ -116,6 +127,12 @@ public class AutomaticGun : MonoBehaviour
 
             float bulletLifetime = 2.0f;
             Destroy(bullet, bulletLifetime);
+        }
+
+         // Play the shooting sound
+        if (shootSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(shootSound);
         }
     }
     

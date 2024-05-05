@@ -5,9 +5,11 @@ public class CollectOrb : MonoBehaviour
     public int experiencePerOrb = 5; // Amount of experience gained per orb
     public float followSpeed = 5.0f; // Speed at which the orb follows the player
     public float followDistance = 0.5f; // Distance at which the orb is considered collected
+    public AudioClip collectSound; // Sound played when orb is collected
 
     private bool isFollowing = false; // Flag to determine if the orb is following the player
     private Transform playerTransform; // Reference to the player's transform
+    private AudioSource audioSource;
 
     private void Update()
     {
@@ -15,6 +17,12 @@ public class CollectOrb : MonoBehaviour
         if (isFollowing)
         {
             FollowPlayer();
+        }
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
         }
     }
 
@@ -42,6 +50,9 @@ public class CollectOrb : MonoBehaviour
             // Apply the orb's effect to the player
             ApplyOrbEffectToPlayer();
 
+            // Play the collect sound
+            PlayCollectSound();
+
             // Destroy the orb or deactivate it
             Destroy(gameObject);
         }
@@ -60,6 +71,14 @@ public class CollectOrb : MonoBehaviour
         {
             stats.GivePlayerExperience(experiencePerOrb);
             // Add any other effects or visual feedback here
+        }
+    }
+
+    private void PlayCollectSound()
+    {
+        if (collectSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(collectSound);
         }
     }
 }
