@@ -24,29 +24,34 @@ public class MonsterSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        PlayerStats playerStatus = player.GetComponent<PlayerStats>();
 
-        if (timer > gapTime)
-        {
-            gapTime = Random.Range(minRange, maxRange);
-            timer = 0f;
-            var monster = monsters[Random.Range(0, 4)];
+        if(!playerStatus.LevelingUp){
+            timer += Time.deltaTime;
 
-            var randomPosition = RandomPointInsideCircle(spawnRadius);
-            var position = new Vector3(playerPosition.position.x + randomPosition.x, playerPosition.position.y, playerPosition.position.z + randomPosition.y);
+            if (timer > gapTime)
+            {
+                gapTime = Random.Range(minRange, maxRange);
+                timer = 0f;
+                var monster = monsters[Random.Range(0, 4)];
 
-            while(Vector3.Distance(position, playerPosition.position) < minSpawnRadius){
-                randomPosition = RandomPointInsideCircle(spawnRadius);
-                position = new Vector3(playerPosition.position.x + randomPosition.x, playerPosition.position.y, playerPosition.position.z + randomPosition.y);
+                var randomPosition = RandomPointInsideCircle(spawnRadius);
+                var position = new Vector3(playerPosition.position.x + randomPosition.x, playerPosition.position.y, playerPosition.position.z + randomPosition.y);
+
+                while(Vector3.Distance(position, playerPosition.position) < minSpawnRadius){
+                    randomPosition = RandomPointInsideCircle(spawnRadius);
+                    position = new Vector3(playerPosition.position.x + randomPosition.x, playerPosition.position.y, playerPosition.position.z + randomPosition.y);
+                }
+
+                var mon = Instantiate(monster, position, Quaternion.Euler(0, 0, 0));
+
+                //var effect = Instantiate(animation, transform.position, Quaternion.Euler(0, 0, 0));
+
+                //mon.effect = effect;
+                //mon.playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
+                //Debug.Log(mon);
             }
-
-            var mon = Instantiate(monster, position, Quaternion.Euler(0, 0, 0));
-
-            //var effect = Instantiate(animation, transform.position, Quaternion.Euler(0, 0, 0));
-
-            //mon.effect = effect;
-            //mon.playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
-            //Debug.Log(mon);
         }
     }
 

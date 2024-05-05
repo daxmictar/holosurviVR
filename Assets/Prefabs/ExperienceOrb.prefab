@@ -146,6 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56944c43cf620e4b834ea5d4c26f14f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePerOrb: 5
+  experiencePerOrb: 25
   followSpeed: 5
   followDistance: 0.5

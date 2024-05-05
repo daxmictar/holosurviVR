@@ -37,14 +37,18 @@ public class AutomaticGun : MonoBehaviour
 
     private void Update()
     {
-        // Increment the burst timer by the time elapsed since the last frame
-        burstTimer += Time.deltaTime;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        PlayerStats playerStatus = player.GetComponent<PlayerStats>();
+        if(!playerStatus.LevelingUp){
+            // Increment the burst timer by the time elapsed since the last frame
+            burstTimer += Time.deltaTime;
 
-        // Check if it's time for the next burst
-        if (burstTimer >= timeBetweenBursts)
-        {
-            // Handle firing the burst
-            HandleBurst();
+            // Check if it's time for the next burst
+            if (burstTimer >= timeBetweenBursts)
+            {
+                // Handle firing the burst
+                HandleBurst();
+            }
         }
     }
 

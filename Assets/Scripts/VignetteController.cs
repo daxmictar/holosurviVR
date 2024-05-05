@@ -1,10 +1,10 @@
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
+// using UnityEngine.Rendering.PostProcessing;
 
 public class VignetteController : MonoBehaviour
 {
-    public PostProcessVolume postProcessVolume;
-    private Vignette vignette;
+    // public PostProcessVolume postProcessVolume;
+    // private Vignette vignette;
 
     // Speed of the vignette intensity change
     public float lerpSpeed = 2f;
@@ -15,7 +15,7 @@ public class VignetteController : MonoBehaviour
     void Start()
     {
         // Get the Vignette effect from the Post Processing Volume
-        postProcessVolume.profile.TryGetSettings(out vignette);
+        // postProcessVolume.profile.TryGetSettings(out vignette);
     }
 
     void Update()
@@ -36,6 +36,6 @@ public class VignetteController : MonoBehaviour
         }
 
         // Smoothly transition vignette intensity towards the target value
-        vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, targetIntensity, lerpSpeed * Time.deltaTime);
+        // vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, targetIntensity, lerpSpeed * Time.deltaTime);
     }
 }
