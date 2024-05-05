@@ -11,13 +11,13 @@ public enum Rarity
     EPIC,
 }
 
-public abstract class BaseUpgrade
+public abstract class Upgrade
 {
     public int Id {get;}
     public string Name {get;}
     public Rarity Rarity {get;}
 
-    protected BaseUpgrade(int id, string name, Rarity rarity)
+    protected Upgrade(int id, string name, Rarity rarity)
     {
         this.Id = id;
         this.Name = name;
@@ -31,7 +31,7 @@ public abstract class BaseUpgrade
 }
 
 // Uses a float value as its modifier. These types of modifiers are meant to be added to one of the character's stats.
-public class ScalingUpgrade : BaseUpgrade 
+public class ScalingUpgrade : Upgrade 
 {
     public float Modifier {get;}
 
@@ -41,7 +41,7 @@ public class ScalingUpgrade : BaseUpgrade
     }
 }
 
-public class WeaponUpgrade : BaseUpgrade 
+public class WeaponUpgrade : Upgrade 
 {
     public int Modifier {get;}
 
@@ -53,9 +53,9 @@ public class WeaponUpgrade : BaseUpgrade
 
 public static class UpgradeGenerator
 {
-    public static List<BaseUpgrade> GenerateDamageModifiers() 
+    public static List<Upgrade> GenerateDamageModifiers() 
     {
-        return new List<BaseUpgrade>
+        return new List<Upgrade>
         {
             new ScalingUpgrade(100, "Damage Modifier +20%", Rarity.COMMON, 1.2f),
             new ScalingUpgrade(101, "Damage Modifier +30%", Rarity.UNCOMMON, 1.3f),
@@ -64,9 +64,9 @@ public static class UpgradeGenerator
         };
     }
 
-    public static List<BaseUpgrade> GenerateSpeedModifiers() 
+    public static List<Upgrade> GenerateSpeedModifiers() 
     {
-        return new List<BaseUpgrade>
+        return new List<Upgrade>
         {
             new ScalingUpgrade(104, "Speed Modifier +20%", Rarity.COMMON, 1.2f),
             new ScalingUpgrade(105, "Speed Modifier +30%", Rarity.UNCOMMON, 1.3f),
@@ -75,9 +75,9 @@ public static class UpgradeGenerator
         };
     }
 
-    public static List<BaseUpgrade> GenerateSplitModifiers() 
+    public static List<Upgrade> GenerateSplitModifiers() 
     {
-        return new List<BaseUpgrade>
+        return new List<Upgrade>
         {
             new WeaponUpgrade(108, "Split Projectile +1", Rarity.COMMON, 1),
             new WeaponUpgrade(109, "Split Projectile +2", Rarity.UNCOMMON, 2),
@@ -86,9 +86,9 @@ public static class UpgradeGenerator
         };
     }
 
-    public static List<BaseUpgrade> GenerateBurstModifiers() 
+    public static List<Upgrade> GenerateBurstModifiers() 
     {
-        return new List<BaseUpgrade>
+        return new List<Upgrade>
         {
             new WeaponUpgrade(112, "Burst Projectile +1", Rarity.COMMON, 1),
             new WeaponUpgrade(113, "Burst Projectile +2", Rarity.UNCOMMON, 2),
@@ -101,9 +101,9 @@ public static class UpgradeGenerator
     /// Generates a list of ALL possible upgrades.
     /// </summary>
     /// <returns> A List of BaseUpgrades </returns>
-    public static List<BaseUpgrade> GenerateUpgrades()
+    public static List<Upgrade> GenerateUpgrades()
     {
-        var outList = new List<BaseUpgrade>();
+        var outList = new List<Upgrade>();
 
         outList.AddRange(GenerateDamageModifiers());
         outList.AddRange(GenerateSpeedModifiers());
@@ -114,14 +114,14 @@ public static class UpgradeGenerator
         return outList;
     }
 
-    public static BaseUpgrade GenerateRandomUpgrade()
+    public static Upgrade GenerateRandomUpgrade()
     {
         var upgrades = GenerateUpgrades();
         return upgrades[new System.Random().Next(upgrades.Count)];
     }
 
     // Extracts the power type by its rarity.
-    public static BaseUpgrade GenerateUpgradeById(int id) 
+    public static Upgrade GenerateUpgradeById(int id) 
     {
         var upgrades = GenerateUpgrades();
 

@@ -313,10 +313,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61311e46731b2734587e71cfe27f2915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 50
+  maxHealth: 10
+  currentHealth: 10
   healthBar: {fileID: 3862108071789485322}
-  damageTakenModifier: 20
+  damageTakenModifier: 1
 --- !u!114 &8855220281263948780
 MonoBehaviour:
   m_ObjectHideFlags: 0

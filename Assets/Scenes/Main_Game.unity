@@ -3169,7 +3169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38834f81178d8634bb2aef0f03e55b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lerpSpeed: 8
 --- !u!114 &267958003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15218,6 +15217,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60fb18c46d9f6c240b4f8724b4a50e36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectionBox: {fileID: 1575454038}
+  upgradeTextOne: {fileID: 1459708470}
+  upgradeTextTwo: {fileID: 228197568}
+  upgradeTextThree: {fileID: 1243982433}
 --- !u!1001 &1436781590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17707,6 +17710,10 @@ PrefabInstance:
     - target: {fileID: 7465378332346824484, guid: 17329723282685b4eb14f055c3746235, type: 3}
       propertyPath: m_Name
       value: monsterSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 7465378332346824484, guid: 17329723282685b4eb14f055c3746235, type: 3}
+      propertyPath: m_TagString
+      value: Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 7465378332346824485, guid: 17329723282685b4eb14f055c3746235, type: 3}
       propertyPath: m_RootOrder

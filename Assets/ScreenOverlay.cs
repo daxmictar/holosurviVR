@@ -1,66 +1,35 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using Unity.VisualScripting;
-using Unity.VisualScripting.FullSerializer;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ScreenOverlay : MonoBehaviour
 {
-    private GameObject overlayImage;
-    //private GameObject button1;
-    //private GameObject button2;
-    //private GameObject button3;
-    private GameObject selectionBox;
-    private GameObject title;
-    private GameObject description1;
-    private GameObject description2;
-    private GameObject description3;
+    private GameObject title, overlayImage;
+    public GameObject selectionBox;
+    public GameObject upgradeTextOne, upgradeTextTwo, upgradeTextThree;
     private int upgradeIndex = 0;
 
     // This should just work now, you can store anything that inherits from BaseUpgrade
     // like WeaponUpgrade, or ScalingUpgrade
-    private BaseUpgrade[] upgrades = new BaseUpgrade[3]; 
+    private Upgrade[] upgrades = new Upgrade[3]; 
 
     // Start is called before the first frame update
     void Start()
     {
-        // They should just be assignable whenever now, you can assign to them
-        // before you show the UI to the player.
-        /*
-        upgrades[0] = new BaseUpgrade();
-        upgrades[0].name = "Test Upgrade 1";
+        if (!upgradeTextOne || !upgradeTextTwo || !upgradeTextThree)
+        {
+            Debug.Log("Missing descriptions links for fields in ScreenOverlay.");
+        }
 
-        upgrades[1] = new BaseUpgrade();
-        upgrades[1].name = "Test Upgrade 2";
-
-        upgrades[2] = new BaseUpgrade();
-        upgrades[2].name = "Test Upgrade 3";
-        */
+        if (!selectionBox)
+        {
+            Debug.Log("Missing SelectionBox for ScreenOverlay.");
+        }
 
         //Background overlay
         overlayImage = GameObject.Find("Image");
-        
-        //Power-up buttons
-        //button1 = GameObject.Find("Button1");
-        //button2 = GameObject.Find("Button2");
-        //button3 = GameObject.Find("Button3");
 
         //Title textmesh
         title = GameObject.Find("Title");
-
-        //Power-up Descriptions
-        description1 = GameObject.Find("Description1");
-
-        description2 = GameObject.Find("Description2");
-
-        description3 = GameObject.Find("Description3");
-
-
-        //Selection box
-        selectionBox = GameObject.Find("SelectionBox");
     }
 
     // Update is called once per frame
@@ -69,21 +38,16 @@ public class ScreenOverlay : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         PlayerStats playerStatus = player.GetComponent<PlayerStats>();
 
-        //Semi-transparent backing for dimming
+        // Semi-transparent backing for dimming
         overlayImage.SetActive(playerStatus.LevelingUp);
         
-        //"Level Up!" title
+        // "Level Up!" title
         title.SetActive(playerStatus.LevelingUp);
-
-        //Buttons for selecting power-ups
-        //button1.SetActive(playerStatus.levelingUp);
-        //button2.SetActive(playerStatus.levelingUp);
-        //button3.SetActive(playerStatus.levelingUp);
         
-        //Descriptions of the power-ups
-        description1.SetActive(playerStatus.LevelingUp);
-        description2.SetActive(playerStatus.LevelingUp);
-        description3.SetActive(playerStatus.LevelingUp);
+        // Descriptions of the power-ups
+        upgradeTextOne.SetActive(playerStatus.LevelingUp);
+        upgradeTextTwo.SetActive(playerStatus.LevelingUp);
+        upgradeTextThree.SetActive(playerStatus.LevelingUp);
     
         selectionBox.SetActive(playerStatus.LevelingUp);
 
@@ -120,9 +84,20 @@ public class ScreenOverlay : MonoBehaviour
             ProcessUpgrade(upgradeIndex);
             playerStatus.LevelingUp = false;
         }
+    }
 
-        //Cursor.visible = (playerStatus.levelingUp);
-        //Cursor.lockState = (playerStatus.levelingUp) ? CursorLockMode.None : CursorLockMode.Locked;
+    private void GenerateNewUpgrades()
+    {
+        upgrades[0] = UpgradeGenerator.GenerateRandomUpgrade();
+        upgrades[1] = UpgradeGenerator.GenerateRandomUpgrade();
+        upgrades[2] = UpgradeGenerator.GenerateRandomUpgrade();
+    }
+
+    private void SetUpgradeText()
+    {
+        upgradeTextOne.GetComponent<TextMeshProUGUI>().text = upgrades[0].Name;
+        upgradeTextTwo.GetComponent<TextMeshProUGUI>().text = upgrades[1].Name;
+        upgradeTextThree.GetComponent<TextMeshProUGUI>().text = upgrades[2].Name;
     }
 
     public void GeneratePowerups() 
@@ -143,8 +118,12 @@ public class ScreenOverlay : MonoBehaviour
         // var speedUpgrades = UpgradeGenerator.GenerateSpeedUpgrades();
 
         // Or you can just generate them all at once.
-        var upgrades = UpgradeGenerator.GenerateUpgrades();
-        
+        // var upgrades = UpgradeGenerator.GenerateUpgrades();
+
+        GenerateNewUpgrades();
+
+        SetUpgradeText();
+
         foreach (var upgrade in upgrades)
         {
             // Below is how you perform type introspection, which basically just means: 
@@ -161,18 +140,41 @@ public class ScreenOverlay : MonoBehaviour
         }
     }
 
-    public void ProcessUpgrade(int upgradeID)
+    /// <summary>
+    ///  Apply the effect of the given upgrade
+    /// </summary>
+    /// <param name="upgradeSelection"> A number between 0 and 2 </param>
+    public void ProcessUpgrade(int upgradeSelection)
     {
-        //Apply the effect of the given upgrade
-        var upgrade = UpgradeGenerator.GenerateUpgradeById(upgradeID);
-        if (upgrade is WeaponUpgrade wu)
+        var player = GameObject.FindGameObjectWithTag("Player");
+
+        if (!player)
         {
-            // do something with the weapon upgrade modifier
+            Debug.Log("Could not find the `Player` when calling ProcessUpgrade.");
+            return;
         }
 
-        if (upgrade is ScalingUpgrade su)
+        var selectedUpgrade = upgrades[upgradeSelection];
+
+        // Check and then do something with the weapon upgrade modifier.
+        if (selectedUpgrade is WeaponUpgrade wu)
         {
-            // do something with the scaling upgrade modifier
+            var stats = player.GetComponent<PlayerStats>();
+
+            // Check the player's weapon and then modify it accordingly.
+        }
+
+        // Check and then do something with the scaling upgrade modifier.
+        if (selectedUpgrade is ScalingUpgrade su)
+        {
+            var spawner = GameObject.FindGameObjectWithTag("Spawner");
+            var monsters = spawner.GetComponent<MonsterSpawner>().monsters;
+
+            // Iterate through each monster and bump the value of their damage taken modifier.
+            foreach (var monster in monsters)
+            {
+                monster.GetComponent<MonsterStats>().damageTakenModifier *= su.Modifier;
+            }
         }
     }
 }

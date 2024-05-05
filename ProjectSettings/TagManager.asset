@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Attack
   - UICanvas
+  - Spawner
   layers:
   - Default
   - TransparentFX
