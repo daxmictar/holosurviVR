@@ -25,7 +25,10 @@ public class OrbRotate : MonoBehaviour
         {
             orbitAngles[i] += orbitSpeed * Time.deltaTime;
             Vector3 orbitPosition = player.position + Quaternion.Euler(0, orbitAngles[i], 0) * Vector3.forward * orbitRadius;
-            orbs[i].transform.position = orbitPosition;
+            if (orbs[i]) 
+            {
+                orbs[i].transform.position = orbitPosition;
+            }
         }
     }
 
