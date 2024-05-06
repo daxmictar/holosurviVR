@@ -418,8 +418,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
+  percentDamageTaken: 1
   healthBar: {fileID: 6777472415057539953}
-  damageTakenModifier: 1
+  hitSound: {fileID: 8300000, guid: 0322c12199d2a4c098f12758c28ed564, type: 3}
+  deathSound: {fileID: 8300000, guid: 6b644f11e4eaf4f998c82619d88f5abb, type: 3}
 --- !u!114 &335075479008980320
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -149,3 +149,4 @@ MonoBehaviour:
   experiencePerOrb: 25
   followSpeed: 5
   followDistance: 0.5
+  collectSound: {fileID: 8300000, guid: eb1d171102a0b4c26970f1399a6449e1, type: 3}

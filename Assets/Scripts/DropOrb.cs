@@ -6,11 +6,21 @@ public class DropOrb : MonoBehaviour
 
     public int orbDropCount = 1;
 
+    public AudioClip deathSound; // Sound for when the monster dies
+
     private Animator animator;
+
+    private AudioSource audioSource;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     public void Update()
@@ -33,6 +43,14 @@ public class DropOrb : MonoBehaviour
     public void OnDeathAnimationComplete()
     {
         Destroy(gameObject);
+    }
+
+    private void PlayDeathSound()
+    {
+        if (deathSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(deathSound);
+        }
     }
 
     public void DropOrbs()

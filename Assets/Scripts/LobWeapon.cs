@@ -14,12 +14,22 @@ public class LobWeapon : MonoBehaviour
     public string launchObjectName;
     public Transform explosionPrefab;
 
+    public AudioClip fireSound;
+    public AudioClip landSound;
+    private AudioSource audioSource;
+
     private List<Coroutine> activeCoroutines = new List<Coroutine>();
 
     void Awake()
     {
         targetTransform = GameObject.Find(targetObjectName).transform;
         launchPosition = GameObject.Find(launchObjectName).transform;
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     void Start()
@@ -35,8 +45,12 @@ public class LobWeapon : MonoBehaviour
 
             Transform newProjectile = Instantiate(projectilePrefab, launchPosition.position, Quaternion.identity);
 
+            // Play fire sound
+            PlaySound(fireSound);
+
             // Start a new coroutine to simulate the projectile's trajectory
             Coroutine newCoroutine = StartCoroutine(SimulateProjectile(newProjectile));
+            activeCoroutines.Add(newCoroutine);
         }
     }
 
@@ -91,9 +105,20 @@ public class LobWeapon : MonoBehaviour
         {
             // Instantiate explosion prefab at the collision point
             Instantiate(explosionPrefab, hit.point + new Vector3(0, 0.01f, 0), Quaternion.Euler(90, 0, 0));
+
+             // Play land sound
+            PlaySound(landSound);
         }
 
         // Destroy the projectile after it reaches the target
         Destroy(projectile.gameObject);
+    }
+
+    private void PlaySound(AudioClip sound)
+    {
+        if (audioSource != null && sound != null)
+        {
+            audioSource.PlayOneShot(sound);
+        }
     }
 }

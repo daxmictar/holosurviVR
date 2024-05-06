@@ -22,6 +22,12 @@ public class SplitGun : MonoBehaviour
     // Bullet speed
     [SerializeField] private float bulletSpeed = 20.0f;
 
+    // Sound to play when shooting
+    [SerializeField] private AudioClip shootSound;
+
+    // AudioSource component
+    private AudioSource audioSource;
+
     // Timers to control shot and burst timing
     private float shotTimer;
     private float burstTimer;
@@ -35,6 +41,13 @@ public class SplitGun : MonoBehaviour
         shotTimer = 0f;
         burstTimer = timeBetweenBursts;
         currentBurstShotCount = 0;
+
+        // Get AudioSource component
+        audioSource = GetComponent<AudioSource>(); 
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     /// <summary>
@@ -135,6 +148,12 @@ public class SplitGun : MonoBehaviour
         Destroy(bulletCenter, bulletLifetime);
         Destroy(bulletLeft, bulletLifetime);
         Destroy(bulletRight, bulletLifetime);
+
+        // Play the shooting sound
+        if (shootSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(shootSound);
+        }
     }
 
 }

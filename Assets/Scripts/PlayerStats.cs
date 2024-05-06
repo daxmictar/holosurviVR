@@ -19,6 +19,12 @@ public class PlayerStats : MonoBehaviour
     public Slider healthSlider; // Reference to the health slider UI element
     public Slider expSlider; // Reference to the experience points slider UI element
 
+    public AudioClip hitSound;
+    public Image damageIndicator;
+    public AudioClip experiencePickupSound;
+    private AudioSource audioSource;
+    private float indicatorDuration = 2.0f;
+
     void Start()
     {
         // Ensure that the health slider's max value matches the player's max health
@@ -33,6 +39,24 @@ public class PlayerStats : MonoBehaviour
         {
             expSlider.maxValue = experienceToLevel;
             expSlider.value = experience;
+        }
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        if (damageIndicator != null)
+        {
+            damageIndicator.gameObject.SetActive(false);
+
+            // Ensure damage indicator is a child of a Canvas set to Screen Space - Overlay
+            Canvas canvas = damageIndicator.GetComponentInParent<Canvas>();
+            if (canvas.renderMode != RenderMode.ScreenSpaceOverlay)
+            {
+                canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            }
         }
     }
 
@@ -52,6 +76,15 @@ public class PlayerStats : MonoBehaviour
         experience += amount;
         Debug.Log($"Gave player {amount} exp");
         UpdateExpBar(); // Update the experience bar when the player gains experience
+        PlayExperiencePickupSound();
+    }
+
+    private void PlayExperiencePickupSound()
+    {
+        if (experiencePickupSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(experiencePickupSound);
+        }
     }
 
     public void LevelUp()
@@ -122,4 +155,40 @@ public class PlayerStats : MonoBehaviour
     }
 
 
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        ShowDamageIndicator();
+        PlayHitSound();
+    }
+
+    private void ShowDamageIndicator()
+    {
+        if (damageIndicator != null)
+        {
+            damageIndicator.gameObject.SetActive(true);
+            Invoke("HideDamageIndicator", indicatorDuration);
+        }
+        else
+        {
+            Debug.LogWarning("Damage indicator is not assigned.");
+        }
+    }
+
+    private void HideDamageIndicator()
+    {
+        if (damageIndicator != null)
+        {
+            Debug.Log("Hiding damage indicator");
+            damageIndicator.gameObject.SetActive(false);
+        }
+    }
+
+    private void PlayHitSound()
+    {
+        if (hitSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(hitSound);
+        }
+    }
 }
