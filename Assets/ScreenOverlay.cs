@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Palmmedia.ReportGenerator.Core;
 using TMPro;
 using UnityEngine;
 
@@ -106,15 +108,80 @@ public class ScreenOverlay : MonoBehaviour
         // Or you can just generate them all at once.
         // var upgrades = UpgradeGenerator.GenerateUpgrades();
 
-        upgrades[0] = UpgradeGenerator.GenerateRandomUpgrade();
-        upgrades[1] = UpgradeGenerator.GenerateRandomUpgrade();
-        upgrades[2] = UpgradeGenerator.GenerateRandomUpgrade();
+        // upgrades[0] = UpgradeGenerator.GenerateRandomUpgrade();
+        // upgrades[1] = UpgradeGenerator.GenerateRandomUpgrade();
+        // upgrades[2] = UpgradeGenerator.GenerateRandomUpgrade();
 
-        upgradeTextOne.GetComponent<TextMeshProUGUI>().text = upgrades[0].Name;
-        upgradeTextTwo.GetComponent<TextMeshProUGUI>().text = upgrades[1].Name;
-        upgradeTextThree.GetComponent<TextMeshProUGUI>().text = upgrades[2].Name;
+        // upgradeTextOne.GetComponent<TextMeshProUGUI>().text = upgrades[0].Name;
+        // upgradeTextTwo.GetComponent<TextMeshProUGUI>().text = upgrades[1].Name;
+        // upgradeTextThree.GetComponent<TextMeshProUGUI>().text = upgrades[2].Name;
+
+        var player = GameObject.FindGameObjectWithTag("Player");
+
+        // Check the player's current weapon types.
+        var potentialUpgrades = new List<Upgrade>();
+
+        var damageUpgrades = UpgradeGenerator.GenerateDamageModifiers();
+        var speedUpgrades = UpgradeGenerator.GenerateSpeedModifiers();
+        var splitUpgrades = UpgradeGenerator.GenerateSplitModifiers();
+        var burstUpgrades = UpgradeGenerator.GenerateBurstModifiers();
+
+        var automaticGun = player.GetComponent<AutomaticGun>();
+        if (automaticGun.enabled)
+        {
+            potentialUpgrades.AddRange(damageUpgrades);
+            potentialUpgrades.AddRange(speedUpgrades);
+            potentialUpgrades.AddRange(burstUpgrades);
+
+            upgrades[0] = UpgradeGenerator.GetRandomUpgradeFrom(potentialUpgrades);
+            upgrades[1] = UpgradeGenerator.GetRandomUpgradeFrom(potentialUpgrades);
+            upgrades[2] = UpgradeGenerator.GetRandomUpgradeFrom(potentialUpgrades);
+
+            UpgradeGenerator.PrintUpgradesFrom(potentialUpgrades);
+
+            potentialUpgrades.Clear();
+        }
+
+        var splitGun = player.GetComponent<SplitGun>();
+        if (splitGun.enabled)
+        {
+            potentialUpgrades.AddRange(damageUpgrades);
+            potentialUpgrades.AddRange(speedUpgrades);
+            potentialUpgrades.AddRange(splitUpgrades);
+
+            upgrades[0] = UpgradeGenerator.GetRandomUpgradeFrom(potentialUpgrades);
+            upgrades[1] = UpgradeGenerator.GetRandomUpgradeFrom(potentialUpgrades);
+            upgrades[2] = UpgradeGenerator.GetRandomUpgradeFrom(potentialUpgrades);
+
+            UpgradeGenerator.PrintUpgradesFrom(potentialUpgrades);
+
+            potentialUpgrades.Clear();
+        }
+
+        var orbManager = player.GetComponent<Orbmanager>();
+        var orbRotate = player.GetComponent<OrbRotate>();
+        if (orbManager.enabled && orbRotate.enabled)
+        {
+            potentialUpgrades.AddRange(damageUpgrades);
+            potentialUpgrades.AddRange(speedUpgrades);
+
+            upgrades[0] = UpgradeGenerator.GetRandomUpgradeFrom(potentialUpgrades);
+            upgrades[1] = UpgradeGenerator.GetRandomUpgradeFrom(potentialUpgrades);
+            upgrades[2] = UpgradeGenerator.GetRandomUpgradeFrom(potentialUpgrades);
+
+            UpgradeGenerator.PrintUpgradesFrom(potentialUpgrades);
+
+            potentialUpgrades.Clear();
+        }
+
+        if (upgradeTextOne && upgradeTextTwo && upgradeTextThree)
+        {
+            upgradeTextOne.GetComponent<TextMeshProUGUI>().text = upgrades[0].Name;
+            upgradeTextTwo.GetComponent<TextMeshProUGUI>().text = upgrades[1].Name; 
+            upgradeTextThree.GetComponent<TextMeshProUGUI>().text = upgrades[2].Name;
+        }
+
     }
-
     /// <summary>
     ///  Apply the effect of the given upgrade
     /// </summary>
@@ -131,6 +198,8 @@ public class ScreenOverlay : MonoBehaviour
 
         var selectedUpgrade = upgrades[upgradeSelection];
         var playerPowerups = player.GetComponent<PlayerUpgrades>();
+
+        Debug.Log($"Player has picked {selectedUpgrade}");
 
         // Pass the selected power to the PlayerUpgrades script.
         playerPowerups.UpdatePlayerUpgrades(selectedUpgrade);

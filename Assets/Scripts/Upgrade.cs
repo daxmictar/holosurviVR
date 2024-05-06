@@ -55,45 +55,50 @@ public static class UpgradeGenerator
 {
     public static List<Upgrade> GenerateDamageModifiers() 
     {
+        // 100 is the tag for damage modifiers.
         return new List<Upgrade>
         {
             new ScalingUpgrade(100, "Damage Modifier +20%", Rarity.COMMON, 1.2f),
-            new ScalingUpgrade(101, "Damage Modifier +30%", Rarity.UNCOMMON, 1.3f),
-            new ScalingUpgrade(102, "Damage Modifier +40%", Rarity.RARE, 1.4f),
-            new ScalingUpgrade(103, "Damage Modifier +50%", Rarity.EPIC, 1.5f),
+            new ScalingUpgrade(100, "Damage Modifier +30%", Rarity.UNCOMMON, 1.3f),
+            new ScalingUpgrade(100, "Damage Modifier +40%", Rarity.RARE, 1.4f),
+            new ScalingUpgrade(100, "Damage Modifier +50%", Rarity.EPIC, 1.5f),
         };
     }
 
     public static List<Upgrade> GenerateSpeedModifiers() 
     {
+
+        // 110 is the tag for speed modifiers.
         return new List<Upgrade>
         {
-            new ScalingUpgrade(104, "Speed Modifier +20%", Rarity.COMMON, 1.2f),
-            new ScalingUpgrade(105, "Speed Modifier +30%", Rarity.UNCOMMON, 1.3f),
-            new ScalingUpgrade(106, "Speed Modifier +40%", Rarity.RARE, 1.4f),
-            new ScalingUpgrade(107, "Speed Modifier +50%", Rarity.EPIC, 1.5f),
+            new ScalingUpgrade(110, "Speed Modifier +20%", Rarity.COMMON, 1.2f),
+            new ScalingUpgrade(110, "Speed Modifier +30%", Rarity.UNCOMMON, 1.3f),
+            new ScalingUpgrade(110, "Speed Modifier +40%", Rarity.RARE, 1.4f),
+            new ScalingUpgrade(110, "Speed Modifier +50%", Rarity.EPIC, 1.5f),
         };
     }
 
     public static List<Upgrade> GenerateSplitModifiers() 
     {
+        // 120 is the tag for split modifiers.
         return new List<Upgrade>
         {
-            new WeaponUpgrade(108, "Split Projectile +1", Rarity.COMMON, 1),
-            new WeaponUpgrade(109, "Split Projectile +2", Rarity.UNCOMMON, 2),
-            new WeaponUpgrade(110, "Split Projectile +3", Rarity.RARE, 3),
-            new WeaponUpgrade(111, "Split Projectile +4", Rarity.EPIC, 4),
+            new WeaponUpgrade(120, "Split Projectile +1", Rarity.COMMON, 1),
+            new WeaponUpgrade(120, "Split Projectile +2", Rarity.UNCOMMON, 2),
+            new WeaponUpgrade(120, "Split Projectile +3", Rarity.RARE, 3),
+            new WeaponUpgrade(120, "Split Projectile +4", Rarity.EPIC, 4),
         };
     }
 
     public static List<Upgrade> GenerateBurstModifiers() 
     {
+        // 130 is the tag for burst modifiers.
         return new List<Upgrade>
         {
-            new WeaponUpgrade(112, "Burst Projectile +1", Rarity.COMMON, 1),
-            new WeaponUpgrade(113, "Burst Projectile +2", Rarity.UNCOMMON, 2),
-            new WeaponUpgrade(114, "Burst Projectile +3", Rarity.RARE, 3),
-            new WeaponUpgrade(115, "Burst Projectile +4", Rarity.EPIC, 4),
+            new WeaponUpgrade(130, "Burst Projectile +1", Rarity.COMMON, 1),
+            new WeaponUpgrade(130, "Burst Projectile +2", Rarity.UNCOMMON, 2),
+            new WeaponUpgrade(130, "Burst Projectile +3", Rarity.RARE, 3),
+            new WeaponUpgrade(130, "Burst Projectile +4", Rarity.EPIC, 4),
         };
     }
 
@@ -120,6 +125,11 @@ public static class UpgradeGenerator
         return upgrades[new System.Random().Next(upgrades.Count)];
     }
 
+    public static Upgrade GetRandomUpgradeFrom(List<Upgrade> upgrades)
+    {
+        return upgrades[new System.Random().Next(upgrades.Count)];
+    }
+
     // Extracts the power type by its rarity.
     public static Upgrade GenerateUpgradeById(int id) 
     {
@@ -132,5 +142,13 @@ public static class UpgradeGenerator
         }
 
         return target;
+    }
+
+    public static void PrintUpgradesFrom(List<Upgrade> upgrades)
+    {
+        foreach (var upgrade in upgrades)
+        {
+            Debug.Log(upgrade);
+        }
     }
 }

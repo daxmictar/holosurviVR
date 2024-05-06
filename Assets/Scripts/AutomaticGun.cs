@@ -31,6 +31,29 @@ public class AutomaticGun : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Increments the number of bullets per burst by the specified value.
+    /// </summary>
+    /// <param name="addedNumberOfBullets"></param>
+    public void UpgradeBulletsPerBurst(int addedNumberOfBullets)
+    {
+        bulletsPerBurst += addedNumberOfBullets;
+    }
+
+    /// <summary>
+    /// Increases the current bullet speed by the specified modifier.
+    /// </summary>
+    /// <param name="bulletSpeedModifier"> A float value between 0 and 0.5. </param>
+    public void UpgradeBulletSpeed(float bulletSpeedModifier)
+    {
+        bulletSpeed *= bulletSpeedModifier;
+    }
+
+    public GameObject GetBulletPrefab()
+    {
+        return bulletPrefab;
+    }
+
     private void HandleBurst()
     {
         if (currentBurstShotCount < bulletsPerBurst)
